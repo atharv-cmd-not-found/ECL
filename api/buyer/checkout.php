@@ -78,11 +78,11 @@ $razorpay_order_id = 'order_' . bin2hex(random_bytes(8));
                     </div>
                     <div class="form-group">
                         <label>Preferred Delivery Time</label>
-                        <select id="delivery_time" style="width: 100%; padding: 0.75rem; border-radius: 0.5rem; border: 1px solid var(--border); background: var(--glass-bg); color: white;">
-                            <option value="Flexible">Flexible (Anytime)</option>
-                            <option value="Morning (9 AM - 12 PM)">Morning (9 AM - 12 PM)</option>
-                            <option value="Afternoon (12 PM - 4 PM)">Afternoon (12 PM - 4 PM)</option>
-                            <option value="Evening (4 PM - 8 PM)">Evening (4 PM - 8 PM)</option>
+                        <select id="delivery_time" style="width: 100%; padding: 0.75rem; border-radius: 0.5rem; border: 1px solid var(--border); background: #1e293b; color: white;">
+                            <option value="Flexible" style="background: #1e293b; color: white;">Flexible (Anytime)</option>
+                            <option value="Morning (9 AM - 12 PM)" style="background: #1e293b; color: white;">Morning (9 AM - 12 PM)</option>
+                            <option value="Afternoon (12 PM - 4 PM)" style="background: #1e293b; color: white;">Afternoon (12 PM - 4 PM)</option>
+                            <option value="Evening (4 PM - 8 PM)" style="background: #1e293b; color: white;">Evening (4 PM - 8 PM)</option>
                         </select>
                     </div>
                 </div>
