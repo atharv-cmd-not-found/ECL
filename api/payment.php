@@ -52,8 +52,11 @@ if ($action === 'verify' && $_SERVER['REQUEST_METHOD'] === 'POST') {
             }
 
             // 2. Create Order
-            $stmt = $pdo->prepare("INSERT INTO orders (user_id, total_amount, status, razorpay_order_id) VALUES (?, ?, 'paid', ?)");
-            $stmt->execute([$_SESSION['user_id'], $total, $data['razorpay_order_id'] ?? '']);
+            $shipping_address = $data['shipping_address'] ?? '';
+            $delivery_time = $data['delivery_time'] ?? '';
+            
+            $stmt = $pdo->prepare("INSERT INTO orders (user_id, total_amount, status, shipping_address, delivery_time, razorpay_order_id) VALUES (?, ?, 'paid', ?, ?, ?)");
+            $stmt->execute([$_SESSION['user_id'], $total, $shipping_address, $delivery_time, $data['razorpay_order_id'] ?? '']);
             $order_id = $pdo->lastInsertId();
 
             // 3. Create Order Items
