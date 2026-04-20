@@ -87,7 +87,7 @@ $razorpay_order_id = 'order_' . bin2hex(random_bytes(8));
             const data = await res.json();
             if (data.success) {
                 alert('Payment Successful! Your order has been placed.');
-                window.location.href = 'orders.php';
+                window.location.href = '/buyer/orders';
             } else {
                 alert('Payment verification failed: ' + data.error);
             }

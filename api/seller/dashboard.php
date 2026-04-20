@@ -24,8 +24,8 @@ $products = $stmt->fetchAll();
     <nav class="container glass">
         <a href="/" class="logo">PureVital Seller</a>
         <ul class="nav-links">
-            <li><a href="dashboard.php">Inventory</a></li>
-            <li><a href="manage_products.php" class="btn btn-primary" style="padding: 0.5rem 1rem;">Add Product</a></li>
+            <li><a href="/seller/dashboard">Inventory</a></li>
+            <li><a href="/seller/manage_products" class="btn btn-primary" style="padding: 0.5rem 1rem;">Add Product</a></li>
             <li><a href="#" id="logoutBtn">Logout</a></li>
         </ul>
     </nav>
@@ -55,7 +55,7 @@ $products = $stmt->fetchAll();
                                 <td style="padding: 1rem;">₹<?php echo number_format($p['price'], 2); ?></td>
                                 <td style="padding: 1rem;"><?php echo $p['stock']; ?> units</td>
                                 <td style="padding: 1rem;">
-                                    <a href="manage_products.php?id=<?php echo $p['id']; ?>" style="color: var(--secondary); text-decoration: none; margin-right: 1rem;">Edit</a>
+                                    <a href="/seller/manage_products?id=<?php echo $p['id']; ?>" style="color: var(--secondary); text-decoration: none; margin-right: 1rem;">Edit</a>
                                     <button class="delete-btn" data-id="<?php echo $p['id']; ?>" style="background: none; border: none; color: var(--error); cursor: pointer;">Delete</button>
                                 </td>
                             </tr>

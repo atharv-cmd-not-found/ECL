@@ -32,7 +32,7 @@ $orders = $stmt->fetchAll();
         <a href="/" class="logo">PureVital</a>
         <ul class="nav-links">
             <li><a href="/">Shop</a></li>
-            <li><a href="cart.php">Cart</a></li>
+            <li><a href="/buyer/cart">Cart</a></li>
             <li><a href="#" id="logoutBtn">Logout</a></li>
         </ul>
     </nav>

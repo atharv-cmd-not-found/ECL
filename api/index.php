@@ -21,10 +21,10 @@ session_start();
             <li><a href="/">Shop</a></li>
             <?php if (isset($_SESSION['user_id'])): ?>
                 <?php if ($_SESSION['user_role'] === 'seller'): ?>
-                    <li><a href="seller/dashboard.php">Dashboard</a></li>
+                    <li><a href="/seller/dashboard">Dashboard</a></li>
                 <?php else: ?>
-                    <li><a href="buyer/orders.php">My Orders</a></li>
-                    <li><a href="buyer/cart.php">Cart</a></li>
+                    <li><a href="/buyer/orders">My Orders</a></li>
+                    <li><a href="/buyer/cart">Cart</a></li>
                 <?php endif; ?>
                 <li><a href="#" id="logoutBtn">Logout (<?php echo htmlspecialchars($_SESSION['user_name']); ?>)</a></li>
             <?php else: ?>

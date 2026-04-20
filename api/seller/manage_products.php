@@ -29,9 +29,9 @@ $categories = $pdo->query("SELECT * FROM categories")->fetchAll();
 </head>
 <body>
     <nav class="container glass">
-        <a href="dashboard.php" class="logo">PureVital Seller</a>
+        <a href="/seller/dashboard" class="logo">PureVital Seller</a>
         <ul class="nav-links">
-            <li><a href="dashboard.php">Inventory</a></li>
+            <li><a href="/seller/dashboard">Inventory</a></li>
             <li><a href="#" id="logoutBtn">Logout</a></li>
         </ul>
     </nav>
@@ -98,7 +98,7 @@ $categories = $pdo->query("SELECT * FROM categories")->fetchAll();
             const data = await res.json();
             if (data.success) {
                 alert(data.success);
-                window.location.href = 'dashboard.php';
+                window.location.href = '/seller/dashboard';
             } else {
                 alert(data.error);
             }

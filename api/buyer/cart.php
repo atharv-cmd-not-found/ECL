@@ -21,7 +21,7 @@ if (!isset($_SESSION['user_id'])) {
         <a href="/" class="logo">PureVital</a>
         <ul class="nav-links">
             <li><a href="/">Shop</a></li>
-            <li><a href="orders.php">My Orders</a></li>
+            <li><a href="/buyer/orders">My Orders</a></li>
             <li><a href="#" id="logoutBtn">Logout</a></li>
         </ul>
     </nav>
@@ -39,7 +39,7 @@ if (!isset($_SESSION['user_id'])) {
     <script src="/assets/js/main.js"></script>
     <script>
         async function loadCart() {
-            const res = await fetch('../api/cart.php?action=get');
+            const res = await fetch('/api/cart.php?action=get');
             const cartItems = await res.json();
             const container = document.getElementById('cartContent');
 
@@ -92,7 +92,7 @@ if (!isset($_SESSION['user_id'])) {
                     </table>
                     <div style="margin-top: 2rem; text-align: right;">
                         <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Total: ₹${total.toFixed(2)}</h3>
-                        <a href="checkout.php" class="btn btn-primary" style="padding: 1rem 3rem;">Proceed to Checkout</a>
+                        <a href="/buyer/checkout" class="btn btn-primary" style="padding: 1rem 3rem;">Proceed to Checkout</a>
                     </div>
                 </div>
             `;
@@ -100,7 +100,7 @@ if (!isset($_SESSION['user_id'])) {
         }
 
         async function updateQty(productId, quantity) {
-            await fetch('../api/cart.php?action=update', {
+            await fetch('/api/cart.php?action=update', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ product_id: productId, quantity })
@@ -109,7 +109,7 @@ if (!isset($_SESSION['user_id'])) {
         }
 
         async function removeItem(productId) {
-            await fetch('../api/cart.php?action=remove', {
+            await fetch('/api/cart.php?action=remove', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ product_id: productId })
