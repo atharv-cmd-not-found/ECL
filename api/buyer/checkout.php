@@ -22,8 +22,7 @@ foreach ($products as $p) {
 }
 
 // In a real app, you'd create a Razorpay order here via their SDK/API
-// For this demo, we'll simulate the order ID generation or use a placeholder
-$razorpay_order_id = 'order_' . bin2hex(random_bytes(8));
+// For this demo, we've switched to a simple integration to fix failures
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -121,7 +120,6 @@ $razorpay_order_id = 'order_' . bin2hex(random_bytes(8));
                 "currency": "INR",
                 "name": "PureVital Supplements",
                 "description": "Purchase from PureVital",
-                "order_id": "<?php echo $razorpay_order_id; ?>",
                 "handler": function (response){
                     // Pass address and time along with payment response
                     response.shipping_address = fullAddress;
