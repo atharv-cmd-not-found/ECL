@@ -44,22 +44,51 @@ $razorpay_order_id = 'order_' . bin2hex(random_bytes(8));
             <h2 style="margin-bottom: 2rem;">Checkout Details</h2>
             
             <div style="text-align: left; margin-bottom: 2rem;">
-                <div class="form-group">
-                    <label>Shipping Address</label>
-                    <textarea id="shipping_address" rows="3" placeholder="Enter your full address" required style="width: 100%; padding: 0.75rem; border-radius: 0.5rem;"></textarea>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label>Flat / House No.</label>
+                        <input type="text" id="flat_no" placeholder="e.g. 101, Building A" required style="width: 100%; padding: 0.75rem; border-radius: 0.5rem; border: 1px solid var(--border); background: var(--glass-bg); color: white;">
+                    </div>
+                    <div class="form-group">
+                        <label>Area / Street</label>
+                        <input type="text" id="area" placeholder="e.g. MG Road, West End" required style="width: 100%; padding: 0.75rem; border-radius: 0.5rem; border: 1px solid var(--border); background: var(--glass-bg); color: white;">
+                    </div>
                 </div>
+                
                 <div class="form-group">
-                    <label>Preferred Delivery Time</label>
-                    <select id="delivery_time" style="width: 100%; padding: 0.75rem; border-radius: 0.5rem;">
-                        <option value="Flexible">Flexible (Anytime)</option>
-                        <option value="Morning (9 AM - 12 PM)">Morning (9 AM - 12 PM)</option>
-                        <option value="Afternoon (12 PM - 4 PM)">Afternoon (12 PM - 4 PM)</option>
-                        <option value="Evening (4 PM - 8 PM)">Evening (4 PM - 8 PM)</option>
-                    </select>
+                    <label>Landmark (Optional)</label>
+                    <input type="text" id="landmark" placeholder="e.g. Near City Mall" style="width: 100%; padding: 0.75rem; border-radius: 0.5rem; border: 1px solid var(--border); background: var(--glass-bg); color: white;">
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label>Pincode</label>
+                        <input type="text" id="pincode" placeholder="6 digits" required style="width: 100%; padding: 0.75rem; border-radius: 0.5rem; border: 1px solid var(--border); background: var(--glass-bg); color: white;">
+                    </div>
+                    <div class="form-group">
+                        <label>State</label>
+                        <input type="text" id="state" placeholder="e.g. Maharashtra" required style="width: 100%; padding: 0.75rem; border-radius: 0.5rem; border: 1px solid var(--border); background: var(--glass-bg); color: white;">
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label>Country</label>
+                        <input type="text" id="country" value="India" required style="width: 100%; padding: 0.75rem; border-radius: 0.5rem; border: 1px solid var(--border); background: var(--glass-bg); color: white;">
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Delivery Time</label>
+                        <select id="delivery_time" style="width: 100%; padding: 0.75rem; border-radius: 0.5rem; border: 1px solid var(--border); background: var(--glass-bg); color: white;">
+                            <option value="Flexible">Flexible (Anytime)</option>
+                            <option value="Morning (9 AM - 12 PM)">Morning (9 AM - 12 PM)</option>
+                            <option value="Afternoon (12 PM - 4 PM)">Afternoon (12 PM - 4 PM)</option>
+                            <option value="Evening (4 PM - 8 PM)">Evening (4 PM - 8 PM)</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
-            <div style="font-size: 1.1rem; margin-bottom: 2rem; padding: 1rem; background: rgba(var(--primary-rgb), 0.1); border-radius: 0.5rem;">
+            <div style="font-size: 1.1rem; margin-bottom: 2rem; padding: 1rem; background: rgba(16, 185, 129, 0.1); border-radius: 0.5rem;">
                 <p style="color: var(--text-muted); margin-bottom: 0.5rem;">Amount to Pay:</p>
                 <p style="font-size: 2rem; font-weight: 700; color: var(--primary);">₹<?php echo number_format($total, 2); ?></p>
             </div>
@@ -71,11 +100,20 @@ $razorpay_order_id = 'order_' . bin2hex(random_bytes(8));
 
     <script>
         document.getElementById('payBtn').onclick = function(e) {
-            const address = document.getElementById('shipping_address').value;
-            if (!address) {
-                alert('Please enter your shipping address.');
+            const flat = document.getElementById('flat_no').value;
+            const area = document.getElementById('area').value;
+            const pincode = document.getElementById('pincode').value;
+            const state = document.getElementById('state').value;
+            const country = document.getElementById('country').value;
+            const landmark = document.getElementById('landmark').value;
+
+            if (!flat || !area || !pincode || !state || !country) {
+                alert('Please fill in all required shipping details.');
                 return;
             }
+
+            // Construct full address string
+            const fullAddress = `${flat}, ${area}, ${landmark ? 'Landmark: ' + landmark + ', ' : ''}${state}, ${country} - ${pincode}`;
 
             var options = {
                 "key": "<?php echo RAZORPAY_KEY_ID; ?>",
@@ -86,7 +124,7 @@ $razorpay_order_id = 'order_' . bin2hex(random_bytes(8));
                 "order_id": "<?php echo $razorpay_order_id; ?>",
                 "handler": function (response){
                     // Pass address and time along with payment response
-                    response.shipping_address = address;
+                    response.shipping_address = fullAddress;
                     response.delivery_time = document.getElementById('delivery_time').value;
                     verifyPayment(response);
                 },
