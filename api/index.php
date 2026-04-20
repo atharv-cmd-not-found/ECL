@@ -1,7 +1,7 @@
 <?php
 // index.php - Landing Page / Home
 session_start();
-require_once __DIR__ . '/config/db.php';
+require_once __DIR__ . '/../config/db.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +9,7 @@ require_once __DIR__ . '/config/db.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PureVital - Health & Supplements</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
     <nav class="container glass">
@@ -18,7 +18,7 @@ require_once __DIR__ . '/config/db.php';
             PureVital
         </a>
         <ul class="nav-links">
-            <li><a href="index.php">Shop</a></li>
+            <li><a href="/">Shop</a></li>
             <?php if (isset($_SESSION['user_id'])): ?>
                 <?php if ($_SESSION['user_role'] === 'seller'): ?>
                     <li><a href="seller/dashboard.php">Dashboard</a></li>
@@ -28,8 +28,8 @@ require_once __DIR__ . '/config/db.php';
                 <?php endif; ?>
                 <li><a href="#" id="logoutBtn">Logout (<?php echo htmlspecialchars($_SESSION['user_name']); ?>)</a></li>
             <?php else: ?>
-                <li><a href="login.php">Login</a></li>
-                <li><a href="register.php">Register</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
             <?php endif; ?>
         </ul>
     </nav>
@@ -73,6 +73,6 @@ require_once __DIR__ . '/config/db.php';
         <p>&copy; 2026 PureVital Health Supplements. Built with Excellence.</p>
     </footer>
 
-    <script src="assets/js/main.js"></script>
+    <script src="/assets/js/main.js"></script>
 </body>
 </html>

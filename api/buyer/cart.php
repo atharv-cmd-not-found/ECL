@@ -1,10 +1,10 @@
 <?php
 // buyer/cart.php
 session_start();
-require_once __DIR__ . '/../config/db.php';
+require_once __DIR__ . '/../../config/db.php';
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../login.php');
+    header('Location: /login');
     exit;
 }
 ?>
@@ -14,13 +14,13 @@ if (!isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Cart - PureVital</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
     <nav class="container glass">
-        <a href="../index.php" class="logo">PureVital</a>
+        <a href="/" class="logo">PureVital</a>
         <ul class="nav-links">
-            <li><a href="../index.php">Shop</a></li>
+            <li><a href="/">Shop</a></li>
             <li><a href="orders.php">My Orders</a></li>
             <li><a href="#" id="logoutBtn">Logout</a></li>
         </ul>
@@ -36,7 +36,7 @@ if (!isset($_SESSION['user_id'])) {
         </div>
     </main>
 
-    <script src="../assets/js/main.js"></script>
+    <script src="/assets/js/main.js"></script>
     <script>
         async function loadCart() {
             const res = await fetch('../api/cart.php?action=get');
@@ -47,7 +47,7 @@ if (!isset($_SESSION['user_id'])) {
                 container.innerHTML = `
                     <div class="glass" style="padding: 3rem; text-align: center;">
                         <p style="margin-bottom: 2rem;">Your cart is empty.</p>
-                        <a href="../index.php" class="btn btn-primary">Start Shopping</a>
+                        <a href="/" class="btn btn-primary">Start Shopping</a>
                     </div>
                 `;
                 return;

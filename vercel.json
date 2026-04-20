@@ -1,6 +1,6 @@
 {
   "functions": {
-    "**/*.php": {
+    "api/**/*.php": {
       "runtime": "vercel-php@0.9.0"
     }
   },
@@ -10,17 +10,28 @@
       "dest": "/assets/$1"
     },
     {
-      "src": "/(login|register|index|preview)\\.php",
-      "dest": "/$1.php"
+      "src": "/login",
+      "dest": "/api/login.php"
     },
     {
-      "src": "/(buyer|seller|api)/(.*)\\.php",
-      "dest": "/$1/$2.php"
+      "src": "/register",
+      "dest": "/api/register.php"
     },
     {
-      "src": "/",
-      "dest": "/index.php"
+      "src": "/buyer/(.*)",
+      "dest": "/api/buyer/$1.php"
+    },
+    {
+      "src": "/seller/(.*)",
+      "dest": "/api/seller/$1.php"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1.php"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.php"
     }
   ]
 }
-

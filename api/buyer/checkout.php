@@ -1,11 +1,11 @@
 <?php
 // buyer/checkout.php
 session_start();
-require_once __DIR__ . '/../config/db.php';
-require_once __DIR__ . '/../config/razorpay.php';
+require_once __DIR__ . '/../../config/db.php';
+require_once __DIR__ . '/../../config/razorpay.php';
 
 if (!isset($_SESSION['user_id']) || empty($_SESSION['cart'])) {
-    header('Location: ../index.php');
+    header('Location: /');
     exit;
 }
 
@@ -31,12 +31,12 @@ $razorpay_order_id = 'order_' . bin2hex(random_bytes(8));
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - PureVital</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 <body>
     <nav class="container glass">
-        <a href="../index.php" class="logo">PureVital</a>
+        <a href="/" class="logo">PureVital</a>
     </nav>
 
     <main class="auth-wrapper">
@@ -79,7 +79,7 @@ $razorpay_order_id = 'order_' . bin2hex(random_bytes(8));
         }
 
         async function verifyPayment(response) {
-            const res = await fetch('../api/payment.php?action=verify', {
+            const res = await fetch('/api/payment.php?action=verify', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(response)

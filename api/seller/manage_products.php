@@ -1,10 +1,10 @@
 <?php
 // seller/manage_products.php
 session_start();
-require_once __DIR__ . '/../config/db.php';
+require_once __DIR__ . '/../../config/db.php';
 
 if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'seller') {
-    header('Location: ../login.php');
+    header('Location: /login');
     exit;
 }
 
@@ -25,7 +25,7 @@ $categories = $pdo->query("SELECT * FROM categories")->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $id ? 'Edit' : 'Add'; ?> Product - PureVital</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
     <nav class="container glass">
@@ -76,7 +76,7 @@ $categories = $pdo->query("SELECT * FROM categories")->fetchAll();
         </div>
     </main>
 
-    <script src="../assets/js/main.js"></script>
+    <script src="/assets/js/main.js"></script>
     <script>
         document.getElementById('productForm').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -89,7 +89,7 @@ $categories = $pdo->query("SELECT * FROM categories")->fetchAll();
             const description = document.getElementById('description').value;
 
             const action = id ? 'update' : 'create';
-            const res = await fetch('../api/products.php?action=' + action, {
+            const res = await fetch('/api/products.php?action=' + action, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ id, name, category_id, price, stock, image_url, description })

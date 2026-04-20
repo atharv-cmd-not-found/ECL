@@ -1,10 +1,10 @@
 <?php
 // seller/dashboard.php
 session_start();
-require_once __DIR__ . '/../config/db.php';
+require_once __DIR__ . '/../../config/db.php';
 
 if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'seller') {
-    header('Location: ../login.php');
+    header('Location: /login');
     exit;
 }
 
@@ -18,11 +18,11 @@ $products = $stmt->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seller Dashboard - PureVital</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
     <nav class="container glass">
-        <a href="../index.php" class="logo">PureVital Seller</a>
+        <a href="/" class="logo">PureVital Seller</a>
         <ul class="nav-links">
             <li><a href="dashboard.php">Inventory</a></li>
             <li><a href="manage_products.php" class="btn btn-primary" style="padding: 0.5rem 1rem;">Add Product</a></li>
@@ -66,14 +66,14 @@ $products = $stmt->fetchAll();
         </div>
     </main>
 
-    <script src="../assets/js/main.js"></script>
+    <script src="/assets/js/main.js"></script>
     <script>
         // Seller specific logic
         document.querySelectorAll('.delete-btn').forEach(btn => {
             btn.addEventListener('click', async () => {
                 if (confirm('Are you sure you want to delete this product?')) {
                     const id = btn.getAttribute('data-id');
-                    const res = await fetch('../api/products.php?action=delete', {
+                    const res = await fetch('/api/products.php?action=delete', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ id })

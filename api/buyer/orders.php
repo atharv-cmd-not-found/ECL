@@ -1,10 +1,10 @@
 <?php
 // buyer/orders.php
 session_start();
-require_once __DIR__ . '/../config/db.php';
+require_once __DIR__ . '/../../config/db.php';
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../login.php');
+    header('Location: /login');
     exit;
 }
 
@@ -25,13 +25,13 @@ $orders = $stmt->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Orders - PureVital</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
     <nav class="container glass">
-        <a href="../index.php" class="logo">PureVital</a>
+        <a href="/" class="logo">PureVital</a>
         <ul class="nav-links">
-            <li><a href="../index.php">Shop</a></li>
+            <li><a href="/">Shop</a></li>
             <li><a href="cart.php">Cart</a></li>
             <li><a href="#" id="logoutBtn">Logout</a></li>
         </ul>
@@ -43,7 +43,7 @@ $orders = $stmt->fetchAll();
         <?php if (empty($orders)): ?>
             <div class="glass" style="padding: 3rem; text-align: center;">
                 <p>You haven't placed any orders yet.</p>
-                <a href="../index.php" class="btn btn-primary" style="margin-top: 1rem;">Start Shopping</a>
+                <a href="/" class="btn btn-primary" style="margin-top: 1rem;">Start Shopping</a>
             </div>
         <?php else: ?>
             <div class="grid" style="grid-template-columns: 1fr; gap: 1.5rem;">
@@ -80,6 +80,6 @@ $orders = $stmt->fetchAll();
         <?php endif; ?>
     </main>
 
-    <script src="../assets/js/main.js"></script>
+    <script src="/assets/js/main.js"></script>
 </body>
 </html>

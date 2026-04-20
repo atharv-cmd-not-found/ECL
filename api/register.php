@@ -2,7 +2,7 @@
 // register.php
 session_start();
 if (isset($_SESSION['user_id'])) {
-    header('Location: index.php');
+    header('Location: /');
     exit;
 }
 ?>
@@ -12,7 +12,7 @@ if (isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - PureVital</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body class="auth-wrapper">
     <div class="auth-card glass">
@@ -40,9 +40,9 @@ if (isset($_SESSION['user_id'])) {
             <button type="submit" class="btn btn-primary btn-block">Create Account</button>
         </form>
         <p class="text-center" style="margin-top: 1.5rem; color: var(--text-muted);">
-            Already have an account? <a href="login.php" style="color: var(--primary);">Login</a>
+            Already have an account? <a href="/login" style="color: var(--primary);">Login</a>
         </p>
     </div>
-    <script src="assets/js/main.js"></script>
+    <script src="/assets/js/main.js"></script>
 </body>
 </html>
