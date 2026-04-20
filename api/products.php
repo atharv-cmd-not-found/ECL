@@ -1,7 +1,7 @@
 <?php
 // api/products.php
-session_start();
 require_once __DIR__ . '/../config/db.php';
+session_start();
 
 header('Content-Type: application/json');
 
