@@ -26,6 +26,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $category_id = $data['category_id'] ?? 0;
         $image_url = $data['image_url'] ?? '';
 
+        // Auto-convert Google Drive links to Direct Image Links
+        if (strpos($image_url, 'drive.google.com') !== false) {
+            if (preg_match('/\/file\/d\/([a-zA-Z0-9_-]+)\//', $image_url, $matches)) {
+                $image_url = "https://drive.google.com/uc?export=view&id=" . $matches[1];
+            } elseif (preg_match('/id=([a-zA-Z0-9_-]+)/', $image_url, $matches)) {
+                $image_url = "https://drive.google.com/uc?export=view&id=" . $matches[1];
+            }
+        }
+
         if (empty($name) || empty($price) || empty($category_id)) {
             echo json_encode(['error' => 'Name, price, and category are required.']);
             exit;
