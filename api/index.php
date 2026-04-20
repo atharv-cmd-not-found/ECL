@@ -1,5 +1,6 @@
 <?php
 // index.php - Landing Page / Home
+header('Cache-Control: s-maxage=60, stale-while-revalidate');
 require_once __DIR__ . '/../config/db.php';
 session_start();
 ?>
@@ -55,7 +56,7 @@ session_start();
                 <?php foreach ($products as $p): ?>
                     <div class="product-card glass">
                         <div class="product-image">
-                            <img src="<?php echo htmlspecialchars($p['image_url'] ?: 'https://via.placeholder.com/300x300?text=Premium+Supplement'); ?>" alt="<?php echo htmlspecialchars($p['name']); ?>">
+                            <img src="<?php echo htmlspecialchars($p['image_url'] ?: 'https://via.placeholder.com/300x300?text=Premium+Supplement'); ?>" alt="<?php echo htmlspecialchars($p['name']); ?>" loading="lazy">
                         </div>
                         <div class="product-info">
                             <div class="product-category"><?php echo htmlspecialchars($p['category_name']); ?></div>

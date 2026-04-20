@@ -62,6 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if ($action === 'categories') {
+        header('Cache-Control: s-maxage=3600, stale-while-revalidate');
         $stmt = $pdo->query("SELECT * FROM categories");
         echo json_encode($stmt->fetchAll());
     }
