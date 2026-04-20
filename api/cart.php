@@ -11,6 +11,14 @@ if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
 
+// Global Auth Check for Cart
+if (!isset($_SESSION['user_id'])) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' || $action === 'get') {
+        echo json_encode(['error' => 'Please login to use the cart', 'login_required' => true]);
+        exit;
+    }
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
     

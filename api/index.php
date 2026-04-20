@@ -62,7 +62,11 @@ session_start();
                             <div class="product-category"><?php echo htmlspecialchars($p['category_name']); ?></div>
                             <h3 class="product-title"><?php echo htmlspecialchars($p['name']); ?></h3>
                             <div class="product-price">₹<?php echo number_format($p['price'], 2); ?></div>
-                            <button class="btn btn-primary btn-block add-to-cart" data-id="<?php echo $p['id']; ?>">Add to Cart</button>
+                            <?php if (isset($_SESSION['user_id'])): ?>
+                                <button class="btn btn-primary btn-block add-to-cart" data-id="<?php echo $p['id']; ?>">Add to Cart</button>
+                            <?php else: ?>
+                                <a href="/login" class="btn btn-secondary btn-block">Login to Buy</a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 <?php endforeach; ?>
