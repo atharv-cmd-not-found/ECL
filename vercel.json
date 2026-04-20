@@ -10,27 +10,23 @@
       "dest": "/assets/$1"
     },
     {
-      "src": "/login",
-      "dest": "/api/login.php"
+      "src": "/(login|register|index)",
+      "dest": "/api/$1.php"
     },
     {
-      "src": "/register",
-      "dest": "/api/register.php"
+      "src": "/(buyer|seller)/(.*)",
+      "dest": "/api/$1/$2.php"
     },
     {
-      "src": "/buyer/(.*)",
-      "dest": "/api/buyer/$1.php"
-    },
-    {
-      "src": "/seller/(.*)",
-      "dest": "/api/seller/$1.php"
+      "src": "/api/(.*)\\.php",
+      "dest": "/api/$1.php"
     },
     {
       "src": "/api/(.*)",
       "dest": "/api/$1.php"
     },
     {
-      "src": "/(.*)",
+      "src": "/",
       "dest": "/api/index.php"
     }
   ]
