@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
-            const res = await fetch('api/auth.php?action=login', {
+            const res = await fetch('/api/auth.php?action=login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, password })
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const data = await res.json();
             if (data.success) {
-                window.location.href = data.role === 'seller' ? 'seller/dashboard.php' : 'index.php';
+                window.location.href = data.role === 'seller' ? '/seller/dashboard.php' : '/';
             } else {
                 alert(data.error);
             }
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const password = document.getElementById('password').value;
             const role = document.getElementById('role').value;
 
-            const res = await fetch('api/auth.php?action=register', {
+            const res = await fetch('/api/auth.php?action=register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ name, email, password, role })
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await res.json();
             if (data.success) {
                 alert(data.success);
-                window.location.href = 'login.php';
+                window.location.href = '/login';
             } else {
                 alert(data.error);
             }
@@ -53,9 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (logoutBtn) {
         logoutBtn.addEventListener('click', async (e) => {
             e.preventDefault();
-            const res = await fetch('api/auth.php?action=logout');
+            const res = await fetch('/api/auth.php?action=logout');
             const data = await res.json();
-            if (data.success) window.location.href = 'index.php';
+            if (data.success) window.location.href = '/';
         });
     }
 
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addToCartBtns.forEach(btn => {
         btn.addEventListener('click', async () => {
             const productId = btn.getAttribute('data-id');
-            const res = await fetch('api/cart.php?action=add', {
+            const res = await fetch('/api/cart.php?action=add', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ product_id: productId })
