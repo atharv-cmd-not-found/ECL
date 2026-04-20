@@ -23,6 +23,12 @@ $options = [
 
 try {
      $pdo = new PDO($dsn, $user, $pass, $options);
+     
+     // Global Session Handler Integration
+     require_once __DIR__ . '/session_handler.php';
+     $handler = new PdoSessionHandler($pdo);
+     session_set_save_handler($handler, true);
+     
 } catch (\PDOException $e) {
      die("Connection failed: " . $e->getMessage());
 }

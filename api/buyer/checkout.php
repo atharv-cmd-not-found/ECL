@@ -1,7 +1,7 @@
 <?php
 // buyer/checkout.php
-session_start();
 require_once __DIR__ . '/../../config/db.php';
+session_start();
 require_once __DIR__ . '/../../config/razorpay.php';
 
 if (!isset($_SESSION['user_id']) || empty($_SESSION['cart'])) {

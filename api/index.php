@@ -1,7 +1,7 @@
 <?php
 // index.php - Landing Page / Home
-session_start();
 require_once __DIR__ . '/../config/db.php';
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
